@@ -4,7 +4,7 @@ import peasycam3.org.apache.commons.math.geometry.Rotation;
 import peasycam3.org.apache.commons.math.geometry.Vector3D;
 
 //
-// HeasUpDisplay - HUD
+// HeadUpDisplay - HUD
 //
 // This demo shows how to create a scope for XY-screen-aligned and orthographic rendering.
 // 

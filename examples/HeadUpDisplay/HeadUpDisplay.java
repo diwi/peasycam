@@ -1,4 +1,4 @@
-package HeadsUpDisplay;
+package HeadUpDisplay;
 
 import java.util.Locale;
 
@@ -9,11 +9,11 @@ import processing.core.PApplet;
 import processing.opengl.PGraphicsOpenGL;
 
 
-public class HeadsUpDisplay extends PApplet {
+public class HeadUpDisplay extends PApplet {
   
 
   //
-  // HeasUpDisplay - HUD
+  // HeadUpDisplay - HUD
   //
   // This demo shows how to create a scope for XY-screen-aligned and orthographic rendering.
   // 
@@ -149,7 +149,7 @@ public class HeadsUpDisplay extends PApplet {
 	
 
   public static void main(String args[]) {
-    PApplet.main(new String[] { HeadsUpDisplay.class.getName() });
+    PApplet.main(new String[] { HeadUpDisplay.class.getName() });
   }
   
 }
