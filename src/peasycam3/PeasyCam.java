@@ -90,9 +90,8 @@ public class PeasyCam {
   double distance_max       = Double.MAX_VALUE;
   
  
-  // callback states
-  boolean active      = false; // set to true in ctor
-  boolean auto_update = false; // set to true in ctor
+  // registered draw
+  boolean auto_update = true;
   
   // other stuff
   long default_interpolation_time = 300;
@@ -173,12 +172,12 @@ public class PeasyCam {
     
     setViewport(0, 0, canvas.width, canvas.height);
     
-    setAutoUpdate(true);
-    setActive(true);
+    // registered callbacks
+    canvas.parent.registerMethod("draw"      , this);
+    canvas.parent.registerMethod("dispose"   , this);
+    canvas.parent.registerMethod("mouseEvent", this);
+    canvas.parent.registerMethod("keyEvent"  , this);
   }
-  
-  
-  
   
   
   
@@ -288,10 +287,16 @@ public class PeasyCam {
   
   // PApplet registered draw-callback
   public void draw() {
-    update();
+    if(auto_update){
+      update();
+    }
   }
   
-  
+  // PApplet registered dispose-callback
+  public void dispose(){
+    release();
+  }
+
   // main camera update method
   public void update(){
     
@@ -318,6 +323,21 @@ public class PeasyCam {
     
     apply();
   }
+  
+  
+  public void release(){
+    // no resources to release 
+  }
+  
+  
+  public boolean getAutoUpdate(){
+    return auto_update;
+  }
+  
+  public void setAutoUpdate(boolean status){
+    auto_update = status;
+  }
+  
   
   
   
@@ -347,38 +367,9 @@ public class PeasyCam {
   
   
 
-  public boolean isAutoUpdate(){
-    return auto_update;
-  }
+
   
-  public void setAutoUpdate(boolean status){
-    if (auto_update != status) {
-      auto_update = status;
-      if (status) {
-        canvas.parent.registerMethod("draw", this);
-      } else {
-        canvas.parent.unregisterMethod("draw", this);
-      }
-    }
-  }
-  
-  
-  public boolean isActive() {
-    return active;
-  }
-  
-  public void setActive(boolean status) {
-    if (active != status) {
-      active = status;
-      if (status) {
-        canvas.parent.registerMethod("mouseEvent", this);
-        canvas.parent.registerMethod("keyEvent", this);
-      } else {
-        canvas.parent.unregisterMethod("mouseEvent", this);
-        canvas.parent.unregisterMethod("keyEvent", this);
-      }
-    }
-  }
+
 
 
 
