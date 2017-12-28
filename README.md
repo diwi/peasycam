@@ -26,7 +26,7 @@ It is designed to be in sync with the javascript version for p5.js (TODO: add re
 
 <br>
 
-### Example: HeadsUpDisplay
-![HeadsUpDisplay](https://github.com/diwi/peasycam/blob/PeasyCam3/screenshots/HeadsUpDisplay.png)
+### Example: HeadUpDisplay
+![HeadUpDisplay](https://github.com/diwi/peasycam/blob/PeasyCam3/screenshots/HeadUpDisplay.png)
 
 
