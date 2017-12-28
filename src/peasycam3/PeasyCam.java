@@ -46,7 +46,7 @@ import processing.opengl.PGraphicsOpenGL;
  */
 public class PeasyCam {
   
-  public static final String VERSION = "300";
+  public static final String VERSION = "301";
   
   static final Vector3D LOOK = Vector3D.plusK; // [0, 0, 1]
   static final Vector3D UP   = Vector3D.plusJ; // [0, 1, 0]
