@@ -351,7 +351,7 @@ public class PeasyCam {
   }
 
   public void apply(PGraphics canvas) {
-    if (canvas.isGL() && canvas.is3D()) {
+    if (canvas != null && canvas.isGL() && canvas.is3D()) {
       
       camEYE = getPosition(camEYE);   
       camLAT = getCenter  (camLAT);
@@ -700,6 +700,9 @@ public class PeasyCam {
     return canvas;
   }
   
+  /**
+   * canvas = null is a valid argument, and omits the auto camera apply call.
+   */
   public void setCanvas(PGraphics canvas){
     this.canvas = canvas;
   }
@@ -789,8 +792,19 @@ public class PeasyCam {
 
   
  
-  boolean pushedLights = false;
 
+  public void beginHUD() {
+    beginHUD(canvas);
+  }
+
+  public void endHUD() {
+    endHUD(canvas);
+  }
+  
+
+
+  
+  
   /**
    * 
    * begin screen-aligned 2D-drawing.
@@ -805,37 +819,39 @@ public class PeasyCam {
    * </pre>
    * 
    */
-  public void beginHUD() {
+  static public void beginHUD(PGraphics canvas) {
+    if(canvas == null) return;
     canvas.hint(PConstants.DISABLE_DEPTH_TEST);
     canvas.pushMatrix();
     canvas.resetMatrix();
     // 3D is always GL (in processing 3), so this check is probably redundant.
     if (canvas.isGL() && canvas.is3D()) {
       PGraphicsOpenGL pgl = (PGraphicsOpenGL) canvas;
-      pushedLights = pgl.lights;
+      PUSHED_LIGHTS = pgl.lights;
       pgl.lights = false;
       pgl.pushProjection();
       canvas.ortho(0, canvas.width, -canvas.height, 0, -Float.MAX_VALUE, +Float.MAX_VALUE);
     }
   }
+  
+  static boolean PUSHED_LIGHTS = false;
 
   /**
    * 
    * end screen-aligned 2D-drawing.
    * 
    */
-  public void endHUD() {
+  static public void endHUD(PGraphics canvas) {
+    if(canvas == null) return;
+    
     if (canvas.isGL() && canvas.is3D()) {
       PGraphicsOpenGL pgl = (PGraphicsOpenGL) canvas;
       pgl.popProjection();
-      pgl.lights = pushedLights;
+      pgl.lights = PUSHED_LIGHTS;
     }
     canvas.popMatrix();
     canvas.hint(PConstants.ENABLE_DEPTH_TEST);
   }
-  
-  
-  
   
   
   
