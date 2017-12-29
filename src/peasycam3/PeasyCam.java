@@ -312,14 +312,14 @@ public class PeasyCam {
     
     // interpolated actions have lower priority then damped actions
     if(b_update){
-      timedRot.stop();
-      timedPan     .stop();
-      timedzoom    .stop();
+      timedRot .stop();
+      timedPan .stop();
+      timedzoom.stop();
+    } else {
+      timedRot .update();
+      timedPan .update();
+      timedzoom.update();
     }
-    
-    timedRot.update();
-    timedPan     .update();
-    timedzoom    .update();
     
     apply();
   }
@@ -845,16 +845,15 @@ public class PeasyCam {
   
 
   
-  static interface MouseAction {
+  static public interface MouseAction {
     void apply();
   }
   
   
  
-  static abstract class Interpolation<T> {
+  static public abstract class Interpolation<T> {
     
     T valA, valB;
-    
     double timer, duration;
     boolean active;
   
@@ -894,7 +893,7 @@ public class PeasyCam {
   
   
   
-  static abstract class DampedAction {
+  static public abstract class DampedAction {
     
     double value = 0;
     public double damping = 0.85;
@@ -930,7 +929,7 @@ public class PeasyCam {
   /**
    * deep copy of camera state
    */
-  public static class State{
+  static public class State{
     
     public double distance;
     public  Vector3D center;
