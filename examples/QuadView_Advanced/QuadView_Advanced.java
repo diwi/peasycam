@@ -1,3 +1,27 @@
+/**
+ * 
+ * The PeasyCam3 Processing library.
+ *
+ *   Copyright 2008 Jonathan Feinberg
+ *   Copyright 2018 Thomas Diewald
+ *
+ *   https://github.com/diwi/peasycam/tree/PeasyCam3
+ *
+ *   Apache License: http://www.apache.org/licenses/LICENSE-2.0
+ * 
+ * 
+ * explanatory notes:
+ * 
+ * This library is a derivative of the original PeasyCam Library by Jonathan Feinberg 
+ * and combines new useful features with the great look and feel of the original version.
+ * 
+ * It is designed to be in sync with "p5.EasyCam", the Javascript version for p5js.
+ * 
+ * 
+ */
+
+
+
 package QuadView_Advanced;
 
 import java.util.Locale;

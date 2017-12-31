@@ -1,26 +1,25 @@
 /**
  * 
- * The PeasyCam3 Processing library, which provides an easy-peasy
- * camera for 3D sketching.
+ * The PeasyCam3 Processing library.
  *
  *   Copyright 2008 Jonathan Feinberg
- *   Copyright 2017 Thomas Diewald
+ *   Copyright 2018 Thomas Diewald
  *
+ *   https://github.com/diwi/peasycam/tree/PeasyCam3
  *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ *   Apache License: http://www.apache.org/licenses/LICENSE-2.0
+ * 
+ * 
+ * explanatory notes:
+ * 
+ * This library is a derivative of the original PeasyCam Library by Jonathan Feinberg 
+ * and combines new useful features with the great look and feel of the original version.
+ * 
+ * It is designed to be in sync with "p5.EasyCam", the Javascript version for p5js.
  * 
  * 
  */
+
 
 
 package peasycam3;
@@ -827,14 +826,14 @@ public class PeasyCam {
     // 3D is always GL (in processing 3), so this check is probably redundant.
     if (canvas.isGL() && canvas.is3D()) {
       PGraphicsOpenGL pgl = (PGraphicsOpenGL) canvas;
-      PUSHED_LIGHTS = pgl.lights;
+      PUSHED_HUD_LIGHTS = pgl.lights;
       pgl.lights = false;
       pgl.pushProjection();
       canvas.ortho(0, canvas.width, -canvas.height, 0, -Float.MAX_VALUE, +Float.MAX_VALUE);
     }
   }
   
-  static boolean PUSHED_LIGHTS = false;
+  static boolean PUSHED_HUD_LIGHTS;
 
   /**
    * 
@@ -847,7 +846,7 @@ public class PeasyCam {
     if (canvas.isGL() && canvas.is3D()) {
       PGraphicsOpenGL pgl = (PGraphicsOpenGL) canvas;
       pgl.popProjection();
-      pgl.lights = PUSHED_LIGHTS;
+      pgl.lights = PUSHED_HUD_LIGHTS;
     }
     canvas.popMatrix();
     canvas.hint(PConstants.ENABLE_DEPTH_TEST);
