@@ -22,7 +22,7 @@ It is designed to be in sync with [p5.EasyCam](https://github.com/diwi/p5.EasyCa
 <br>
 
 ### Example: MultiView
-![MultiView](/screenshots/MultiView.jpg)
+![MultiView](/screenshots/MultiView1.jpg)
 
 <br>
 
