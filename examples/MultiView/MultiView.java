@@ -56,7 +56,7 @@ public class MultiView extends PApplet {
   // 
   // Window is resizeAble
   // 
-  // pressed SPACE + Mouse-drag, to apply state of active camer to all others
+  // pressed SPACE + Mouse-drag, to apply state of active camera to all others
   //
   //
 
@@ -246,20 +246,23 @@ public class MultiView extends PApplet {
   
   public void displayScene(PeasyCam cam, int ID){
     
-    cam.apply(this.g);
+
     
     
-    float[] view = cam.getViewport();
-    int w = (int) view[2];
-    int h = (int) view[3];
-    int x = (int) view[0];
-    int y = (int) view[1];
+    float[] viewport = cam.getViewport();
+    int w = (int) viewport[2];
+    int h = (int) viewport[3];
+    int x = (int) viewport[0];
+    int y = (int) viewport[1];
     int y_inv =  height - y - h; // inverted y-axis
 
     // scissors-test and viewport transformation
     setGLGraphicsViewport(x, y_inv, w, h);
+    
+    // modelview - using camera state
+    cam.apply(this.g);
    
-    // projection
+    // projection - using camera viewport
     perspective(60 * PI/180, w/(float)h, 1, 5000);
 
     // clear background (scissors makes sure we only clear the region we own)
