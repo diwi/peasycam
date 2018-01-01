@@ -6,7 +6,7 @@ A mouse driven camera-control library for 3D Processing sketches.
 
 This library is based on the original [PeasyCam](https://github.com/jdf/peasycam) by [Jonathan Feinberg](http://mrfeinberg.com) and combines new useful features with the great look and feel of the original version.
 
-It is designed to be in sync with the javascript version for p5.js (TODO: add repo,link, etc...).
+It is designed to be in sync with [p5.EasyCam](https://github.com/diwi/p5.EasyCam), a Javascript version for p5js.
 
 <br>
 
