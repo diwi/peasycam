@@ -180,11 +180,11 @@ public class PeasyCam {
   
   
   
-  // mouse and keyevetn fields
-  boolean DRAG_ACTIVE = false;
-  double  mx = 0, pmx = 0, dmx = 0;
-  double  my = 0, pmy = 0, dmy = 0;
-  double  mwheel = 0;
+  // mouse and key-event fields
+  public boolean DRAG_ACTIVE = false;
+  public double  mx = 0, pmx = 0, dmx = 0;
+  public double  my = 0, pmy = 0, dmy = 0;
+  public double  mwheel = 0;
   
   // PApplet registered mouseEvent-callback
   public void mouseEvent(final MouseEvent me) {
@@ -802,6 +802,10 @@ public class PeasyCam {
   
 
 
+  static public void beginHUD(PGraphics canvas) {
+    if(canvas == null) return;
+    beginHUD(canvas, canvas.width, canvas.height);
+  }
   
   
   /**
@@ -818,7 +822,7 @@ public class PeasyCam {
    * </pre>
    * 
    */
-  static public void beginHUD(PGraphics canvas) {
+  static public void beginHUD(PGraphics canvas, int w, int h) {
     if(canvas == null) return;
     canvas.hint(PConstants.DISABLE_DEPTH_TEST);
     canvas.pushMatrix();
@@ -829,7 +833,7 @@ public class PeasyCam {
       PUSHED_HUD_LIGHTS = pgl.lights;
       pgl.lights = false;
       pgl.pushProjection();
-      canvas.ortho(0, canvas.width, -canvas.height, 0, -Float.MAX_VALUE, +Float.MAX_VALUE);
+      canvas.ortho(0, w, -h, 0, -Float.MAX_VALUE, +Float.MAX_VALUE);
     }
   }
   
