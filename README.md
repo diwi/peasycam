@@ -21,12 +21,17 @@ It is designed to be in sync with [p5.EasyCam](https://github.com/diwi/p5.EasyCa
 
 <br>
 
+### Example: MultiView
+![MultiView](/screenshots/MultiView.jpg)
+
+<br>
+
 ### Example: QuadView_Advanced
-![QuadView_Advanced](https://github.com/diwi/peasycam/blob/PeasyCam3/screenshots/QuadView_Advanced.png)
+![QuadView_Advanced](/screenshots/QuadView_Advanced.png)
 
 <br>
 
 ### Example: HeadUpDisplay
-![HeadUpDisplay](https://github.com/diwi/peasycam/blob/PeasyCam3/screenshots/HeadUpDisplay.png)
+![HeadUpDisplay](/screenshots/HeadUpDisplay.png)
 
 
