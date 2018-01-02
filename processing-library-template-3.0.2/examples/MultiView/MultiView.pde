@@ -22,7 +22,6 @@
 
 
 
-package MultiView;
 
 import java.util.Locale;
 
@@ -30,15 +29,10 @@ import java.util.Locale;
 import peasycam3.PeasyCam;
 import peasycam3.org.apache.commons.math.geometry.Rotation;
 import peasycam3.org.apache.commons.math.geometry.RotationOrder;
-import processing.core.PApplet;
-import processing.core.PShape;
-import processing.core.PVector;
 import processing.opengl.PGL;
 import processing.opengl.PGraphics3D;
 import processing.opengl.PJOGL;
 
-
-public class MultiView extends PApplet {
   
   
   //
@@ -335,17 +329,3 @@ public class MultiView extends PApplet {
     PeasyCam.endHUD(this.g);
   }
   
-
-  
-  
-  
-  
-  
-  
-  
-  public static void main(String args[]) {
-    PApplet.main(new String[] { MultiView.class.getName() });
-  }
-  
-}
-
