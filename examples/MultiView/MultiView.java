@@ -124,6 +124,36 @@ public class MultiView extends PApplet {
   }
   
   
+  
+  public void setCameraViewports(){
+    int gap = 3;
+    
+    // tiling size
+    int tilex = floor((width  - gap) / NX);
+    int tiley = floor((height - gap) / NY);
+   
+    // viewport offset ... corrected gap due to floor()
+    int offx = (width  - (tilex * NX - gap)) / 2;
+    int offy = (height - (tiley * NY - gap)) / 2;
+    
+    // viewport dimension
+    int cw = tilex - gap;
+    int ch = tiley - gap;
+    
+    // create new viewport for each camera
+    for(int y = 0; y < NY; y++){
+      for(int x = 0; x < NX; x++){
+        int id = y * NX + x;
+        int cx = offx + x * tilex;
+        int cy = offy + y * tiley;
+        cameras[id].setViewport(cx, cy, cw, ch); // this is the key of this whole demo
+      }
+    }
+   
+  }
+  
+  
+  
   public boolean resizeScene(){
     if(window_w == width && window_h == height){
       return false;
@@ -132,20 +162,7 @@ public class MultiView extends PApplet {
     window_w = width;
     window_h = height;
     
-    int border = 2;
-    int dimx = (width  / NX);
-    int dimy = (height / NY);
-
-    for(int y = 0; y < NY; y++){
-      for(int x = 0; x < NX; x++){
-        int id = y * NX + x;
-        int cw = dimx - border * 2;
-        int ch = dimy - border * 2;
-        int cx = x * dimx + border;
-        int cy = y * dimy + border;
-        cameras[id].setViewport(cx, cy, cw, ch); // this is the key of this whole demo
-      }
-    }
+    setCameraViewports();
     
     return true;
   }
@@ -246,14 +263,11 @@ public class MultiView extends PApplet {
   
   public void displayScene(PeasyCam cam, int ID){
     
-
-    
-    
-    float[] viewport = cam.getViewport();
-    int w = (int) viewport[2];
-    int h = (int) viewport[3];
-    int x = (int) viewport[0];
-    int y = (int) viewport[1];
+    int[] viewport = cam.getViewport();
+    int w = viewport[2];
+    int h = viewport[3];
+    int x = viewport[0];
+    int y = viewport[1];
     int y_inv =  height - y - h; // inverted y-axis
 
     // scissors-test and viewport transformation

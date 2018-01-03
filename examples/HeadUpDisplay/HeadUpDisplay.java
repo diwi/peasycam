@@ -132,14 +132,14 @@ public class HeadUpDisplay extends PApplet {
     
     PeasyCam.State state = cam.getState();
     
-    float[]  view     = cam.getViewport();
+    int[]    view     = cam.getViewport();
     double   distance = state.distance; //  cam.getDistance()
     Vector3D center   = state.center;   //  cam.getCenter()
     Rotation rotation = state.rotation; //  cam.getRotation()
     double[] angles   = PeasyCam.Utils.getAnglesXYZ(rotation);
     
     
-    String txt_view     = String.format(Locale.ENGLISH, "Viewport:   %1.0f %1.0f %1.0f %1.0f", view[0], view[1], view[2], view[3]);
+    String txt_view     = String.format(Locale.ENGLISH, "Viewport:   %d %d %d %d", view[0], view[1], view[2], view[3]);
     String txt_fps      = String.format(Locale.ENGLISH, "Framerate:  %7.2f", frameRate);
     String txt_dist     = String.format(Locale.ENGLISH, "Distance:   %7.2f", distance);
     String txt_center   = String.format(Locale.ENGLISH, "Center:     %+7.2f, %+7.2f, %+7.2f", center.getX(), center.getY(), center.getZ());

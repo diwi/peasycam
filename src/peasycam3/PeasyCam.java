@@ -68,7 +68,7 @@ public class PeasyCam {
   public Object user;
   
   // viewport for the mouse-pointer [x,y,w,h]
-  float[] viewport = new float[4];
+  int[] viewport = new int[4];
 
   
   // camera state
@@ -706,16 +706,16 @@ public class PeasyCam {
     this.canvas = canvas;
   }
   
-  public float[] getViewport(){
+  public int[] getViewport(){
     return viewport;
   }
   
-  public void setViewport(float x, float y, float w, float h){
+  public void setViewport(int x, int y, int w, int h){
     viewport[0] = x; viewport[1] = y;
     viewport[2] = w; viewport[3] = h;
   }
   
-  public void setViewport(float[] xywh){
+  public void setViewport(int[] xywh){
     viewport[0] = xywh[0]; viewport[1] = xywh[1];
     viewport[2] = xywh[2]; viewport[3] = xywh[3];
   }

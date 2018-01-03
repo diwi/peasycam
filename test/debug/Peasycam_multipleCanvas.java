@@ -111,7 +111,7 @@ public class Peasycam_multipleCanvas extends PApplet {
    
     background(0);
     for(PeasyCam cam : cameras){
-      float[] view = cam.getViewport();
+      int[] view = cam.getViewport();
       image(cam.getCanvas(), view[0], view[1], view[2], view[3]);
     }
   }
