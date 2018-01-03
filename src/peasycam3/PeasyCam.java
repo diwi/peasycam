@@ -185,6 +185,7 @@ public class PeasyCam {
   public double  mx = 0, pmx = 0, dmx = 0;
   public double  my = 0, pmy = 0, dmy = 0;
   public double  mwheel = 0;
+  public boolean shift_down  = false;
   
   // PApplet registered mouseEvent-callback
   public void mouseEvent(final MouseEvent me) {
@@ -240,7 +241,7 @@ public class PeasyCam {
       
       if(!DRAG_ACTIVE) break;
       
-      if (me.isShiftDown() && SHIFT_CONSTRAINT == 0 && Math.abs(dmx - dmy) > 1) {
+      if (shift_down && SHIFT_CONSTRAINT == 0 && Math.abs(dmx - dmy) > 1) {
         SHIFT_CONSTRAINT = Math.abs(dmx) > Math.abs(dmy) ? YAW : PITCH;
       }
       
@@ -270,18 +271,24 @@ public class PeasyCam {
     
   // PApplet registered keyEvent-callback
   public void keyEvent(final KeyEvent ke) {
-    int action = ke.getAction();
+    int action  = ke.getAction();
     int keycode = ke.getKeyCode();
     boolean shift_key = (keycode == PConstants.SHIFT);
   
     switch (action) {
     case KeyEvent.PRESS:
+      if(shift_key) {
+        shift_down = true;
+      }
       break;
     case KeyEvent.RELEASE:
-      if(shift_key) SHIFT_CONSTRAINT = 0;
+      if(shift_key) {
+        shift_down = false;
+        SHIFT_CONSTRAINT = 0;
+      }
       break;
     }
-    
+     
   }
   
   // PApplet registered draw-callback
@@ -409,8 +416,8 @@ public class PeasyCam {
   
   void mouseDragRotate() {
     // mouse [-1, +1]
-    double mxNdc = Math.min(Math.max((mx - viewport[0]) / viewport[2], 0), 1) * 2 - 1;
-    double myNdc = Math.min(Math.max((my - viewport[1]) / viewport[3], 0), 1) * 2 - 1;
+    double mxNdc = Math.min(Math.max((mx - viewport[0]) / (float)viewport[2], 0), 1) * 2 - 1;
+    double myNdc = Math.min(Math.max((my - viewport[1]) / (float)viewport[3], 0), 1) * 2 - 1;
 
     if ((DRAG_CONSTRAINT & YAW) > 0) {
       dampedRotY.addForce(+dmx * (1.0 - myNdc * myNdc));
