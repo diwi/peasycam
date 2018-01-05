@@ -29,6 +29,7 @@ import peasycam3.PeasyCam;
 import peasycam3.org.apache.commons.math.geometry.Rotation;
 import peasycam3.org.apache.commons.math.geometry.Vector3D;
 import processing.core.PApplet;
+import processing.core.PMatrix3D;
 import processing.core.PShape;
 import processing.core.PVector;
 
@@ -101,16 +102,16 @@ public class Comparison extends PApplet {
     // lights setup
     noLights();
     
-    ambientLight(96, 96, 96);
+//    ambientLight(96, 96, 96);
     pointLight(0,128,255, 0,0,0);
 //    pointLight(64,16,0, 0,0,300);
     
-    PVector dir0 = new PVector(-1, +2, -3); dir0.normalize();
-    PVector dir1 = new PVector(-1, +2, -3); dir1.normalize();
-    PVector dir2 = new PVector(+1, +2, +2); dir2.normalize();
-    directionalLight(50,50,50, dir0.x, dir0.y, dir0.z);
-    directionalLight(50,50,50, dir1.x, dir1.y, dir1.z);
-    directionalLight(50,50,50, dir2.x, dir2.y, dir2.z);
+//    PVector dir0 = new PVector(-1, +2, -3); dir0.normalize();
+//    PVector dir1 = new PVector(-1, +2, -3); dir1.normalize();
+//    PVector dir2 = new PVector(+1, +2, +2); dir2.normalize();
+//    directionalLight(50,50,50, dir0.x, dir0.y, dir0.z);
+//    directionalLight(50,50,50, dir1.x, dir1.y, dir1.z);
+//    directionalLight(50,50,50, dir2.x, dir2.y, dir2.z);
     
     shape(scene);
     
