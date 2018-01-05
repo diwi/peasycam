@@ -91,7 +91,7 @@ public class MultiView extends PApplet {
       cameras[i].setDistance(random(200, 600), 2000);
 //      cameras[i].setCenter(random(-100, 100), random(-100, 100), random(-100, 100), 2000);
     }
-    
+
     
     // create scene
     scene = createShape(GROUP);

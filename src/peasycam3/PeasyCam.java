@@ -62,6 +62,9 @@ public class PeasyCam {
   
   
   // render target
+  final PApplet papplet;
+  
+  // render target
   PGraphics canvas;
   
   // custom user data
@@ -164,6 +167,7 @@ public class PeasyCam {
   /** PGraphics, State */
   public PeasyCam(PGraphics canvas, State state) {
     this.canvas = canvas;
+    this.papplet = canvas.parent;
     
     this.state        = new State(state);
     this.state_reset  = new State(state);
@@ -171,13 +175,23 @@ public class PeasyCam {
     
     setViewport(0, 0, canvas.width, canvas.height);
     
-    // registered callbacks
-    canvas.parent.registerMethod("draw"      , this);
-    canvas.parent.registerMethod("dispose"   , this);
-    canvas.parent.registerMethod("mouseEvent", this);
-    canvas.parent.registerMethod("keyEvent"  , this);
+    registerMethods();
   }
   
+  
+  void registerMethods(){
+    papplet.registerMethod("draw"      , this);
+    papplet.registerMethod("dispose"   , this);
+    papplet.registerMethod("mouseEvent", this);
+    papplet.registerMethod("keyEvent"  , this);
+  }
+  
+  void unregisterMethods(){
+    papplet.unregisterMethod("draw"      , this);
+    papplet.unregisterMethod("dispose"   , this);
+    papplet.unregisterMethod("mouseEvent", this);
+    papplet.unregisterMethod("keyEvent"  , this);
+  }
   
   
   // mouse and key-event fields
@@ -332,7 +346,7 @@ public class PeasyCam {
   
   
   public void release(){
-    // no resources to release 
+    unregisterMethods();
   }
   
   
@@ -800,7 +814,7 @@ public class PeasyCam {
  
 
   public void beginHUD() {
-    beginHUD(canvas);
+    beginHUD(canvas, viewport[2], viewport[3]);
   }
 
   public void endHUD() {
